@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'rest_framework',
+    'drf_spectacular',
     # 'rest_framework_simplejwt',
 
     # Local apps
@@ -137,11 +138,20 @@ REST_FRAMEWORK = {
  
     'DEFAULT_AUTHENTICATION_CLASSES': ( 
     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Task Flow API',
+    'DESCRIPTION': 'Task Flow API is a REST API for managing tasks',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+  
 }
