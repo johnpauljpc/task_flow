@@ -23,5 +23,9 @@ class Task(models.Model):
     class Meta:
         ordering = ('completed','priority', 'due_date', )
 
+    # def total_tasks(self):
+    #     return self.count()
+
     def __str__(self):
         return self.title
+    
