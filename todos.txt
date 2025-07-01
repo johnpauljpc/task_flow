@@ -1,0 +1,5 @@
+**Users app
+-make email field case-insensitive for both login and registration: 
+        achieve this either from the serializers or backend authentication
+
+-Add an endpoint to allow users the number of pending tasks they have, the tasks completed, and the total
