@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # Local apps
     'users',
+    'tasks',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'

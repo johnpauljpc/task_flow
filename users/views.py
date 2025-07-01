@@ -7,12 +7,13 @@ from .serializers import UserRegistrationSerializer, CustomTokenObtainPairSerial
 from django.contrib.auth import get_user_model
 
 # Create your views here.
-"""
-Endpoints for User registration and Login
-"""
+
 User = get_user_model()
 # for registration
 class UserRegistrationView(CreateAPIView):
+    """
+    Endpoints for User registration and Login
+    """
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
 
