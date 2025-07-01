@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsOwnerOfTask
+from .filters import TaskFilter
 
 from .models import Task
 from .serializers import TaskSerializer
@@ -13,10 +14,12 @@ class TaskListCreateView(ListCreateAPIView):
     """
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
+    filterset_class = TaskFilter
 
     def get_queryset(self):
         logged_in_user = self.request.user
         return Task.objects.filter(owner = logged_in_user )
+    
 
 class TaskView(RetrieveUpdateDestroyAPIView):
     """
