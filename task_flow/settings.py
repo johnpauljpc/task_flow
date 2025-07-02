@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+from decouple import config
+import dj_database_url
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2gmuhjb4smz!0dput=%!)cptikj_-9b%d9=y)@9z(d3ph!it%c'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# Cast string to boolean
+DEBUG = True#config('DEBUG',  cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -89,11 +94,23 @@ WSGI_APPLICATION = 'task_flow.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+'''
+#remove the Tripple Quote strings to use SQLite3
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+'''
+
+# Database configuration for PostgreSQL
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
