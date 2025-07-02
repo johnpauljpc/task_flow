@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Cast string to boolean
-DEBUG = True#config('DEBUG',  cast=bool)
+DEBUG = config('DEBUG',  cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
