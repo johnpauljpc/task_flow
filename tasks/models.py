@@ -12,11 +12,11 @@ PRIORITIES = (
 # Create your models here.
 class Task(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks")
     due_date = models.DateField(default= next_3_days)
     completed = models.BooleanField(default=False)
-    priority = models.CharField(choices=PRIORITIES)
+    priority = models.CharField(choices=PRIORITIES, default = PRIORITIES[0])
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 

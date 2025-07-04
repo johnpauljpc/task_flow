@@ -22,6 +22,6 @@ class TaskSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data):
         user = self.context['request'].user
-        if user.id == instance.owner.id:
+        if not (user.id == instance.owner.id):
             raise serializers.ValidationError("You are not authorized to update this task!")
         return super().update(instance, validated_data)
